@@ -27,6 +27,8 @@ class HomeController extends Controller
                 SectionEnum::REVIEWS,
                 SectionEnum::HOWITWORK,
                 SectionEnum::HOWITWORKS,
+                SectionEnum::CONTACTUS,
+                SectionEnum::CONTACTUSES,
             ])
             ->get();
 
@@ -42,6 +44,8 @@ class HomeController extends Controller
         $reviews   = $cmsItems->where('section', SectionEnum::REVIEWS)->values();
         $howitwork = $cmsItems->where('section', SectionEnum::HOWITWORK)->first();
         $howitworks = $cmsItems->where('section', SectionEnum::HOWITWORKS)->values();
+        $contactus  = $cmsItems->where('section', SectionEnum::CONTACTUS)->first();
+        $contactuses = $cmsItems->where('section', SectionEnum::CONTACTUSES)->values();
 
         $footer    = Setting::first();
 
@@ -103,6 +107,14 @@ class HomeController extends Controller
             $data['howitworks'] = $howitworks->map(fn($hw) => $clean($hw))->values();
         }
 
+        // Contact Us
+        if ($contactus) {
+            $data['contactus'] = $clean($contactus);
+        }
+        // Contact Us (collection)
+        if ($contactuses->isNotEmpty()) {
+            $data['contactuses'] = $contactuses->map(fn($cu) => $clean($cu))->values();
+        }
         // Footer settings
         if ($footer) {
             $data['footer'] = [

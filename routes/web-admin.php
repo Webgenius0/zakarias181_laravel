@@ -37,6 +37,7 @@ use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeBannerController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Reviews\ReviewsController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeExampleController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeServiceController;
+use App\Http\Controllers\Web\Backend\CMS\Web\Contactus\ContactUsController;
 use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\HowItWorksController;
 use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\SafelyShopController;
 use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\SimpleSellingController;
@@ -225,6 +226,20 @@ Route::prefix('cms')->name('cms.')->group(function () {
         Route::get('/display', 'display')->name('display');
     });
 
+    // Contact Us
+     Route::prefix('home/contact-us')->name('home.contact-us.')->controller(ContactUsController::class)->group(function () {
+           Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{id}/show', 'show')->name('show');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::patch('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+        Route::get('/{id}/status', 'status')->name('status');
+
+        Route::put('/content', 'content')->name('content');
+        Route::get('/display', 'display')->name('display');
+    });
 
 
     //Privacy and Terms

@@ -36,4 +36,7 @@ enum SectionEnum: string
     case REVIEW = 'review';
     case REVIEWS = 'reviews';
 
+    case CONTACTUS = 'contact-us';
+    case CONTACTUSES = 'contact-uses';
+
 }
