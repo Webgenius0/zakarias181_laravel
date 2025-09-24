@@ -36,6 +36,7 @@ use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeIntroController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeBannerController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeExampleController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeServiceController;
+use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\HowItWorksController;
 use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\SafelyShopController;
 use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\SimpleSellingController;
 use App\Http\Controllers\Web\Backend\CMS\Web\PrivacyTerms\PrivacAndTermsController;
@@ -195,7 +196,13 @@ Route::prefix('cms')->name('cms.')->group(function () {
         Route::get('/display', 'display')->name('display');
     });
     //How It Works Simple Selling
+ Route::prefix('cms/how-it-work')->name('cms.how-it-work.')->controller(HowItWorksController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}/show', 'show')->name('show');
 
+        Route::put('/content', 'content')->name('content');
+        Route::get('/display', 'display')->name('display');
+    });
    
 
     //Privacy and Terms

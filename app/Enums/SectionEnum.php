@@ -30,4 +30,7 @@ enum SectionEnum: string
 
     case BLOGBANNER = 'blog-banner';
 
+    case HOWITWORK = 'how-it-work';
+    case HOWITWORKS = 'how-it-works';
+
 }
