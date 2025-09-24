@@ -102,12 +102,8 @@
                             <ul class="sub-slide-menu">
 
                                 <li><a href="{{ route('admin.cms.blog.blog-banner.index') }}" class="sub-slide-item">Hero Banner</a></li>
-
                             </ul>
                         </li>
-
-
-
                     </ul>
                 </li>
 
@@ -117,7 +113,6 @@
                         <span class="side-menu__label">How it works</span>
                     </a>
                 </li>
-
 
                 <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.cms.home.review.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.review.index') }}">
@@ -140,10 +135,6 @@
                         <span class="side-menu__label">Contact Us</span>
                     </a>
                 </li>
-
-
-               
-
 
                 <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.setting.*') ? 'has-link active' : '' }}" data-bs-toggle="slide" href="#">
