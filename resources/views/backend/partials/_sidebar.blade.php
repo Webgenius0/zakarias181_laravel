@@ -110,12 +110,7 @@
 
                     </ul>
                 </li>
-                <li class="slide">
-                    <a class="side-menu__item {{  request()->routeIs('admin.cms.home.how-it-works.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.how-it-works.index') }}">
-                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
-                        <span class="side-menu__label">How it works</span>
-                    </a>
-                </li>
+              
 
 
                 <li class="slide">
