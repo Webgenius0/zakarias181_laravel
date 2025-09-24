@@ -89,7 +89,7 @@ class HomeController extends Controller
     if ($footer) {
         $data['footer'] = [
             'id'         => $footer->id,
-            'site_name'  => $footer->site_name,
+            'site_name'  => $footer->name,
             'email'      => $footer->email,
             'phone'      => $footer->phone,
             'address'    => $footer->address,
