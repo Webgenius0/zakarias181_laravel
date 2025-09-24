@@ -23,14 +23,14 @@ $hasBoth = $hasImage && $hasBg;
 
 
             <!-- PAGE-HEADER -->
-            <div class="page-header">
+            <!-- <div class="page-header">
                 <div>
                     <h1 class="page-title">CMS : {{ ucwords(str_replace('_', ' ', $page ?? '')) }} Page {{ ucwords(str_replace('_', ' ', $section ?? '')) }} Section.</h1>
                 </div>
                 <div class="ms-auto pageheader-btn">
                     <button onclick="window.location.href=`{{ route($url . '.display') }}`" class="btn me-2 {{ isset($data->is_display) && $data->is_display == 0 ? 'btn-danger' : 'btn-primary' }}">Display</button>
                 </div>
-            </div>
+            </div> -->
             <!-- PAGE-HEADER END -->
 
             <!-- ROW-4 -->

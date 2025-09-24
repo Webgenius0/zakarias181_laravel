@@ -12,60 +12,84 @@ use App\Models\Setting;
 
 class HomeController extends Controller
 {
-   public function index()
-   {
-      $cmsItems = CMS::query()
-         ->where('page', PageEnum::HOME)
-         ->where('status', 'active')
-         ->whereIn('section', [
+  public function index()
+{
+    $cmsItems = CMS::query()
+        ->where('page', PageEnum::HOME)
+        ->where('status', 'active')
+        ->whereIn('section', [
             SectionEnum::INTRO,
             SectionEnum::SERVICE,
             SectionEnum::SERVICES,
             SectionEnum::EXAMPLE,
             SectionEnum::EXAMPLES
-         ])
-         ->get();
+        ])
+        ->get();
 
-      $data = [];
-      $intro   = $cmsItems->where('section', SectionEnum::INTRO)->first();
-      $service  = $cmsItems->where('section', SectionEnum::SERVICE)->first();
-      $services = $cmsItems->where('section', SectionEnum::SERVICES)->values();
-      $why_us  = $cmsItems->where('section', SectionEnum::EXAMPLE)->first();
-      $why_uses = $cmsItems->where('section', SectionEnum::EXAMPLES)->values();
+    $data = [];
 
-      // fetch settings (assuming single row)
-      $footer = Setting::first();
+    $intro     = $cmsItems->where('section', SectionEnum::INTRO)->first();
+    $service   = $cmsItems->where('section', SectionEnum::SERVICE)->first();
+    $services  = $cmsItems->where('section', SectionEnum::SERVICES)->values();
+    $why_us    = $cmsItems->where('section', SectionEnum::EXAMPLE)->first();
+    $why_uses  = $cmsItems->where('section', SectionEnum::EXAMPLES)->values();
 
-      // Helper function to clean null fields
-      $clean = function ($item) {
-         if (!$item) return null;
-         return collect($item->toArray())
-            ->filter(fn($value) => !is_null($value))
-            ->all();
-      };
+    $footer    = Setting::first();
 
-      if ($intro) {
-         $data['intro'] = $clean($intro);
-      }
-      if ($service) {
-         $data['service'] = $clean($service);
-      }
+    // Define clean formatter
+    $clean = function ($item) {
+        if (!$item) return null;
 
-      if ($services->isNotEmpty()) {
-         $data['services'] = $services->map(fn($s) => $clean($s));
-      }
+        return [
+            'id'         => $item->id,
+            'page'       => $item->page,
+            'section'    => $item->section,
+            'slug'       => $item->slug,
+            'title'      => $item->title,
+            'sub_title'  => $item->sub_title,
+            'image'      => $item->image ? asset($item->image) : null,
+            'status'     => $item->status,
+        ];
+    };
 
-      if ($why_us) {
-         $data['example'] = $clean($why_us);
-      }
+    // Intro
+    if ($intro) {
+        $data['intro'] = $clean($intro);
+    }
 
-      if ($why_uses->isNotEmpty()) {
-         $data['examples'] = $why_uses->map(fn($ex) => $clean($ex));
-      }
-      if ($footer) {
-         $data['footer'] = $clean($footer); // return footer as object
-      }
+    // Service
+    if ($service) {
+        $data['service'] = $clean($service);
+    }
 
-      return Helper::jsonResponse(true, 'Home Page', 200, $data);
-   }
+    // Services (collection)
+    if ($services->isNotEmpty()) {
+        $data['services'] = $services->map(fn($s) => $clean($s))->values();
+    }
+
+    // Why Us (example)
+    if ($why_us) {
+        $data['example'] = $clean($why_us);
+    }
+
+    // Why Uses (examples - collection)
+    if ($why_uses->isNotEmpty()) {
+        $data['examples'] = $why_uses->map(fn($ex) => $clean($ex))->values();
+    }
+
+    // Footer settings
+    if ($footer) {
+        $data['footer'] = [
+            'id'         => $footer->id,
+            'site_name'  => $footer->site_name,
+            'email'      => $footer->email,
+            'phone'      => $footer->phone,
+            'address'    => $footer->address,
+            'logo'       => $footer->logo ? asset($footer->logo) : null,
+        ];
+    }
+
+    return Helper::jsonResponse(true, 'Home Page', 200, $data);
+}
+
 }

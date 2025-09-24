@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 
 class CmsController extends Controller
 {
-    public function index()
+   public function index()
    {
       $data = [];
 
@@ -26,5 +26,4 @@ class CmsController extends Controller
 
       return Helper::jsonResponse(true, 'Home Page', 200, $data);
    }
-
 }

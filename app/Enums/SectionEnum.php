@@ -28,4 +28,6 @@ enum SectionEnum: string
     case SERVICE = 'service';
     case SERVICES = 'services';
 
+    case BLOGBANNER = 'blog-banner';
+
 }

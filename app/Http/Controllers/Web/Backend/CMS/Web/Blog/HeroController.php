@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks;
+namespace App\Http\Controllers\Web\Backend\CMS\Web\Blog;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -29,10 +29,10 @@ class HeroController extends Controller
     {
         $this->cmsService = $cmsService;
         
-        $this->page = PageEnum::HOWITWORKS;
+        $this->page = PageEnum::BLOG;
 
         $this->component = ['title', 'sub_title', 'image'];
-        $this->section = SectionEnum::HEROBANNER;
+        $this->section = SectionEnum::BLOGBANNER;
     }
     /**
      * Display a listing of the resource.

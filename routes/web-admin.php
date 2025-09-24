@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Blog;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Web\Backend\SocialLinkController;
 use App\Http\Controllers\Web\Backend\SubscriberController;
 use App\Http\Controllers\Web\Backend\Access\RoleController;
 use App\Http\Controllers\Web\Backend\Access\UserController;
+use App\Http\Controllers\Web\Backend\Blogs\BlogsController;
 use App\Http\Controllers\Web\Backend\Settings\EnvController;
 use App\Http\Controllers\Web\Backend\Settings\LogoController;
 use App\Http\Controllers\Web\Backend\Settings\OtherController;
@@ -24,6 +26,7 @@ use App\Http\Controllers\Web\Backend\Settings\CaptchaController;
 use App\Http\Controllers\Web\Backend\Settings\ProfileController;
 use App\Http\Controllers\Web\Backend\Settings\SettingController;
 use App\Http\Controllers\Web\Backend\Access\PermissionController;
+use App\Http\Controllers\Web\Backend\CMS\Web\Blog\HeroController;
 use App\Http\Controllers\Web\Backend\Settings\FirebaseController;
 use App\Http\Controllers\Web\Backend\Settings\GoogleMapController;
 use App\Http\Controllers\Web\Backend\Settings\SignatureController;
@@ -31,7 +34,6 @@ use App\Http\Controllers\Web\Backend\Settings\MailSettingController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeAboutController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeIntroController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeBannerController;
-use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\HeroController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeExampleController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeServiceController;
 use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\SafelyShopController;
@@ -84,6 +86,17 @@ Route::controller(SocialLinkController::class)->prefix('social')->name('social.'
 });
 
 Route::controller(FaqController::class)->prefix('faq')->name('faq.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::post('/update/{id}', 'update')->name('update');
+    Route::delete('/delete/{id}', 'destroy')->name('destroy');
+    Route::get('/status/{id}', 'status')->name('status');
+});
+
+Route::controller(BlogsController::class)->prefix('blogs')->name('blogs.')->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');
@@ -173,46 +186,17 @@ Route::prefix('cms')->name('cms.')->group(function () {
         Route::get('/display', 'display')->name('display');
     });
 
-    //How It Works Hero
-    Route::prefix('howitworks/hero')->name('howitworks.hero.')->controller(HeroController::class)->group(function () {
+    //Blog Hero
+    Route::prefix('blog/blog-banner')->name('blog.blog-banner.')->controller(HeroController::class)->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id}/show', 'show')->name('show');
 
         Route::put('/content', 'content')->name('content');
         Route::get('/display', 'display')->name('display');
     });
-
     //How It Works Simple Selling
 
-    Route::prefix('howitworks/simple-selling')->name('howitworks.simple-selling.')->controller(SimpleSellingController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/create', 'create')->name('create');
-        Route::post('/', 'store')->name('store');
-        Route::get('/{id}/show', 'show')->name('show');
-        Route::get('/{id}/edit', 'edit')->name('edit');
-        Route::patch('/{id}', 'update')->name('update');
-        Route::delete('/{id}', 'destroy')->name('destroy');
-        Route::get('/{id}/status', 'status')->name('status');
-
-        Route::put('/content', 'content')->name('content');
-        Route::get('/display', 'display')->name('display');
-    });
-
-    //How It Works Safely Shop
-    Route::prefix('howitworks/safely-shop')->name('howitworks.safely-shop.')->controller(SafelyShopController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/create', 'create')->name('create');
-        Route::post('/', 'store')->name('store');
-        Route::get('/{id}/show', 'show')->name('show');
-        Route::get('/{id}/edit', 'edit')->name('edit');
-        Route::patch('/{id}', 'update')->name('update');
-        Route::delete('/{id}', 'destroy')->name('destroy');
-        Route::get('/{id}/status', 'status')->name('status');
-
-        Route::put('/content', 'content')->name('content');
-        Route::get('/display', 'display')->name('display');
-    });
-
+   
 
     //Privacy and Terms
     Route::controller(PrivacAndTermsController::class)->prefix('privecyandterms')->name('privecyandterms.')->group(function () {

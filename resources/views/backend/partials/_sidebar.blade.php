@@ -54,6 +54,13 @@
                     </a>
                 </li>
 
+                <li class="slide">
+                    <a class="side-menu__item {{  request()->routeIs('admin.blogs.*') ? 'has-link active' : '' }}" href="{{ route('admin.blogs.index') }}">
+                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
+                        <span class="side-menu__label">Blogs</span>
+                    </a>
+                </li>
+
                 <li>
                     <h3>CMS</h3>
                 </li>
@@ -73,6 +80,8 @@
                         </svg>
                         <span class="side-menu__label">CMS</span><i class="angle fa fa-angle-right"></i>
                     </a>
+
+                    
                     <ul class="slide-menu">
                         <li class="sub-slide">
                             <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="#"><span
@@ -88,13 +97,12 @@
                         </li>
                         <li class="sub-slide">
                             <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="#"><span
-                                    class="sub-side-menu__label">How It Works</span><i
+                                    class="sub-side-menu__label">Blog</span><i
                                     class="sub-angle fa fa-angle-right"></i></a>
                             <ul class="sub-slide-menu">
 
-                                <li><a href="{{ route('admin.cms.howitworks.hero.index') }}" class="sub-slide-item">Hero Banner</a></li>
-                                <li><a href="{{ route('admin.cms.howitworks.simple-selling.index') }}" class="sub-slide-item">Simple Selling</a></li>
-                                <li><a href="{{ route('admin.cms.howitworks.safely-shop.index') }}" class="sub-slide-item">Safely Shop</a></li>
+                                <li><a href="{{ route('admin.cms.blog.blog-banner.index') }}" class="sub-slide-item">Hero Banner</a></li>
+                                
                             </ul>
                         </li>
                     </ul>

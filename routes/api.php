@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\Frontend\SubcategoryController;
 
 use App\Http\Controllers\Api\Frontend\Footer\FooterController;
 use App\Http\Controllers\Api\Frontend\PrivecyPolicyController;
+use App\Http\Controllers\Api\Frontend\Blogs\BlogListController;
 
 
 //page
@@ -140,4 +141,9 @@ Route::get('/privacy-policy', [PrivecyPolicyController::class, 'index']);
 Route::get('dynamic/page', [PageController::class, 'index']);
 Route::get('dynamic/page/show/{slug}', [PageController::class, 'show']);
 Route::post('/subscribe',[SubscriberController::class,'subscribe']);
+
+Route::controller(BlogListController::class)->group(function(){
+    Route::get('/blog-list', 'index');
+    Route::get('/blog-details/{slug}', 'show');
+});
 
