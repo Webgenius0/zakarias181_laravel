@@ -34,6 +34,7 @@ use App\Http\Controllers\Web\Backend\Settings\MailSettingController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeAboutController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeIntroController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeBannerController;
+use App\Http\Controllers\Web\Backend\CMS\Web\Reviews\ReviewsController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeExampleController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeServiceController;
 use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\HowItWorksController;
@@ -196,14 +197,35 @@ Route::prefix('cms')->name('cms.')->group(function () {
         Route::get('/display', 'display')->name('display');
     });
     //How It Works Simple Selling
- Route::prefix('cms/how-it-work')->name('cms.how-it-work.')->controller(HowItWorksController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
+    Route::prefix('home/how-it-work')->name('home.how-it-work.')->controller(HowItWorksController::class)->group(function () {
+           Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
         Route::get('/{id}/show', 'show')->name('show');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::patch('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+        Route::get('/{id}/status', 'status')->name('status');
 
         Route::put('/content', 'content')->name('content');
         Route::get('/display', 'display')->name('display');
     });
-   
+    // reviews
+     Route::prefix('home/review')->name('home.review.')->controller(ReviewsController::class)->group(function () {
+           Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{id}/show', 'show')->name('show');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::patch('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+        Route::get('/{id}/status', 'status')->name('status');
+
+        Route::put('/content', 'content')->name('content');
+        Route::get('/display', 'display')->name('display');
+    });
+
+
 
     //Privacy and Terms
     Route::controller(PrivacAndTermsController::class)->prefix('privecyandterms')->name('privecyandterms.')->group(function () {

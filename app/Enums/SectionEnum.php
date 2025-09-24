@@ -33,4 +33,7 @@ enum SectionEnum: string
     case HOWITWORK = 'how-it-work';
     case HOWITWORKS = 'how-it-works';
 
+    case REVIEW = 'review';
+    case REVIEWS = 'reviews';
+
 }
