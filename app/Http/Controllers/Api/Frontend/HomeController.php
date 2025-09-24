@@ -15,16 +15,18 @@ class HomeController extends Controller
   public function index()
 {
     $cmsItems = CMS::query()
-        ->where('page', PageEnum::HOME)
+        ->whereIn('page', [PageEnum::HOME, PageEnum::BLOG])
         ->where('status', 'active')
         ->whereIn('section', [
             SectionEnum::INTRO,
             SectionEnum::SERVICE,
             SectionEnum::SERVICES,
             SectionEnum::EXAMPLE,
-            SectionEnum::EXAMPLES
+            SectionEnum::EXAMPLES,
+            SectionEnum::BLOGBANNER,
         ])
         ->get();
+
 
     $data = [];
 
@@ -33,6 +35,7 @@ class HomeController extends Controller
     $services  = $cmsItems->where('section', SectionEnum::SERVICES)->values();
     $why_us    = $cmsItems->where('section', SectionEnum::EXAMPLE)->first();
     $why_uses  = $cmsItems->where('section', SectionEnum::EXAMPLES)->values();
+    $blog_banner = $cmsItems->where('section', SectionEnum::BLOGBANNER)->first();
 
     $footer    = Setting::first();
 
@@ -75,6 +78,11 @@ class HomeController extends Controller
     // Why Uses (examples - collection)
     if ($why_uses->isNotEmpty()) {
         $data['examples'] = $why_uses->map(fn($ex) => $clean($ex))->values();
+    }
+
+   //  Blog Banner
+    if ($blog_banner) {
+        $data['blog_banner'] = $clean($blog_banner);
     }
 
     // Footer settings
