@@ -89,11 +89,13 @@ class HomeController extends Controller
     if ($footer) {
         $data['footer'] = [
             'id'         => $footer->id,
-            'site_name'  => $footer->name,
-            'email'      => $footer->email,
-            'phone'      => $footer->phone,
-            'address'    => $footer->address,
-            'logo'       => $footer->logo ? asset($footer->logo) : null,
+            'title'      => $footer->name ?? null,
+            'description'=> $footer->description ?? null,
+            'email'     => $footer->email ?? null,
+            'phone'     => $footer->phone ?? null,
+            'address'   => $footer->address ?? null,
+            'logo'      => $footer->logo ? asset($footer->logo) : null,
+            'copyright' => $footer->copyright ?? null,
         ];
     }
 
