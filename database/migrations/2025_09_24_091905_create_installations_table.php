@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('installations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
-            $table->string('phone')->nullable();
-            $table->string('postcode')->nullable();
-            $table->string('subject')->nullable();
-            $table->longText('message');
+            $table->string('slug')->unique();
+            $table->decimal('price', 10, 2);
+            $table->string('currency', 10)->default('kr');
+            $table->string('note')->nullable(); // e.g. inkl. moms...
+            $table->string('button_label')->nullable()->default('Bestil tilbud');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('installations');
     }
 };

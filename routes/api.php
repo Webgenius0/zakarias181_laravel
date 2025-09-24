@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\Auth\UserController;
@@ -19,12 +20,12 @@ use App\Http\Controllers\Api\Frontend\SettingsController;
 use App\Http\Controllers\Api\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\Frontend\SubscriberController;
 use App\Http\Controllers\Api\Frontend\SocialLinksController;
-use App\Http\Controllers\Api\Frontend\SubcategoryController;
 
+use App\Http\Controllers\Api\Frontend\SubcategoryController;
 use App\Http\Controllers\Api\Frontend\Footer\FooterController;
 use App\Http\Controllers\Api\Frontend\PrivecyPolicyController;
 use App\Http\Controllers\Api\Frontend\Blogs\BlogListController;
-
+use App\Http\Controllers\Api\Frontend\Contactus\ContactusController;
 
 //page
 Route::get('/page/home', [HomeController::class, 'index']);
@@ -146,4 +147,6 @@ Route::controller(BlogListController::class)->group(function(){
     Route::get('/blog-list', 'index');
     Route::get('/blog-details/{slug}', 'show');
 });
+
+Route::post('/contact-us',[ContactusController::class,'store']);
 

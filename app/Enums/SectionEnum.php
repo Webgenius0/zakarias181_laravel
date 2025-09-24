@@ -39,4 +39,7 @@ enum SectionEnum: string
     case CONTACTUS = 'contact-us';
     case CONTACTUSES = 'contact-uses';
 
+    case INSTALLATION = 'installation';
+    case INSTALLATIONS = 'installations';
+
 }

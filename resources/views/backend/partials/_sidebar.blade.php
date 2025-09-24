@@ -128,7 +128,7 @@
 
 
                 <li class="slide">
-                    <a class="side-menu__item {{  request()->routeIs('admin.cms.home.review.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.review.index') }}">
+                    <a class="side-menu__item {{  request()->routeIs('admin.cms.home.installation.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.installation.index') }}">
                         <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
                         <span class="side-menu__label">Price Installation</span>
                     </a>
@@ -140,6 +140,9 @@
                         <span class="side-menu__label">Contact Us</span>
                     </a>
                 </li>
+
+
+               
 
 
                 <li class="slide">

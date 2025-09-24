@@ -41,6 +41,7 @@ use App\Http\Controllers\Web\Backend\CMS\Web\Contactus\ContactUsController;
 use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\HowItWorksController;
 use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\SafelyShopController;
 use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\SimpleSellingController;
+use App\Http\Controllers\Web\Backend\CMS\Web\Installation\InsatallationController;
 use App\Http\Controllers\Web\Backend\CMS\Web\PrivacyTerms\PrivacAndTermsController;
 
 Route::get("dashboard", [DashboardController::class, 'index'])->name('dashboard');
@@ -241,6 +242,21 @@ Route::prefix('cms')->name('cms.')->group(function () {
         Route::get('/display', 'display')->name('display');
     });
 
+// Installation
+    Route::prefix('home/installation')->name('home.installation.')->controller(InsatallationController::class)->group(function () {
+           Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{id}/show', 'show')->name('show');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::patch('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+        Route::get('/{id}/status', 'status')->name('status');
+
+        Route::put('/content', 'content')->name('content');
+        Route::get('/display', 'display')->name('display');
+    });
+
 
     //Privacy and Terms
     Route::controller(PrivacAndTermsController::class)->prefix('privecyandterms')->name('privecyandterms.')->group(function () {
@@ -256,16 +272,7 @@ Route::prefix('cms')->name('cms.')->group(function () {
 * Chating Route
 */
 
-Route::controller(ChatController::class)->prefix('chat')->name('chat.')->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/list', 'list')->name('list');
-    Route::post('/send/{receiver_id}', 'send')->name('send');
-    Route::get('/conversation/{receiver_id}', 'conversation')->name('conversation');
-    Route::get('/room/{receiver_id}', 'room');
-    Route::get('/search', 'search')->name('search');
-    Route::get('/seen/all/{receiver_id}', 'seenAll');
-    Route::get('/seen/single/{chat_id}', 'seenSingle');
-});
+
 
 
 /*
