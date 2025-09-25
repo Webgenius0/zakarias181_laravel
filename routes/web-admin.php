@@ -26,6 +26,7 @@ use App\Http\Controllers\Web\Backend\Settings\CaptchaController;
 use App\Http\Controllers\Web\Backend\Settings\ProfileController;
 use App\Http\Controllers\Web\Backend\Settings\SettingController;
 use App\Http\Controllers\Web\Backend\Access\PermissionController;
+use App\Http\Controllers\Web\Backend\Blog\ListController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Blog\HeroController;
 use App\Http\Controllers\Web\Backend\Settings\FirebaseController;
 use App\Http\Controllers\Web\Backend\Settings\GoogleMapController;
@@ -398,7 +399,7 @@ Route::prefix('livewire/crud')->name('livewire.crud')->group(function () {
 });
 
 
-Route::controller(UserListController::class)->prefix('user')->name('user.')->group(function () {
+Route::controller(ListController::class)->prefix('list')->name('list.')->group(function () {
     Route::get('/', 'dashboard')->name('dashboard');
     Route::get('/create', 'create')->name('create');
     Route::post('/store', 'store')->name('store');

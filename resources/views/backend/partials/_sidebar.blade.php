@@ -56,8 +56,9 @@
 
                 <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.blogs.*') ? 'has-link active' : '' }}" href="{{ route('admin.blogs.index') }}">
-                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
+                        <i class="fa-solid fa-newspaper side-menu__icon"></i>
                         <span class="side-menu__label">Blogs</span>
+
                     </a>
                 </li>
 
@@ -107,68 +108,76 @@
                     </ul> -->
                 </li>
 
-                  <li class="slide">
+                <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.cms.home.intro.index.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.intro.index') }}">
                         <i class="fa-solid fa-mountain-sun side-menu__icon"></i>
                         <span class="side-menu__label">Home Hero</span>
                     </a>
                 </li>
 
-                 <li class="slide">
+                <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.cms.home.example.index.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.example.index') }}">
-                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
-                        <span class="side-menu__label">Why choose us</span>
+                        <i class="fa-solid fa-circle-check side-menu__icon"></i>
+                        <span class="side-menu__label">Why Choose Us</span>
+
                     </a>
                 </li>
 
                 <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.cms.home.service.index.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.service.index') }}">
-                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
+                        <i class="fa-solid fa-tools side-menu__icon"></i>
                         <span class="side-menu__label">Home Service</span>
+
                     </a>
                 </li>
-               
-              
+
+
                 <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.cms.blog.blog-banner.index.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.blog.blog-banner.index') }}">
-                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
+                        <i class="fa-solid fa-rectangle-ad side-menu__icon"></i>
                         <span class="side-menu__label">Blogs Banner</span>
+
                     </a>
                 </li>
 
-                 <li class="slide">
+                <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.cms.home.how-it-work.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.how-it-work.index') }}">
-                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
+                        <i class="fa-solid fa-diagram-project side-menu__icon"></i>
                         <span class="side-menu__label">How it works</span>
+
                     </a>
                 </li>
 
-                 <li class="slide">
+                <li class="slide">
+                    <a class="side-menu__item {{  request()->routeIs('admin.cms.home.installation.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.installation.index') }}">
+                        <i class="fa-solid fa-screwdriver-wrench side-menu__icon"></i>
+                        <span class="side-menu__label">Price Installation</span>
+
+                    </a>
+                </li>
+
+                <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.cms.home.our-work.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.our-work.index') }}">
-                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
-                        <span class="side-menu__label">Our work</span>
+                        <i class="fa-solid fa-briefcase side-menu__icon"></i>
+                        <span class="side-menu__label">Our Work</span>
+
                     </a>
                 </li>
 
                 <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.cms.home.review.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.review.index') }}">
-                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
+                        <i class="fa-solid fa-star side-menu__icon"></i>
                         <span class="side-menu__label">Reviews</span>
+
                     </a>
                 </li>
 
-
-                <li class="slide">
-                    <a class="side-menu__item {{  request()->routeIs('admin.cms.home.installation.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.installation.index') }}">
-                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
-                        <span class="side-menu__label">Price Installation</span>
-                    </a>
-                </li>
 
                 <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.cms.home.contact-us.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.contact-us.index') }}">
-                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
+                        <i class="fa-solid fa-headset side-menu__icon"></i>
                         <span class="side-menu__label">Contact Us</span>
+
                     </a>
                 </li>
 
