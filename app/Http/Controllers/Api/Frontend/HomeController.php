@@ -23,6 +23,10 @@ class HomeController extends Controller
             SectionEnum::SERVICES,
             SectionEnum::EXAMPLE,
             SectionEnum::EXAMPLES,
+            SectionEnum::INSTALLATION,
+            SectionEnum::INSTALLATIONS,
+            SectionEnum::OURWORK,
+            SectionEnum::OURWORKS,
             SectionEnum::REVIEW,
             SectionEnum::REVIEWS,
             SectionEnum::HOWITWORK,
@@ -56,6 +60,10 @@ class HomeController extends Controller
     $services     = $cmsItems->where('section', SectionEnum::SERVICES)->values();
     $why_us       = $cmsItems->where('section', SectionEnum::EXAMPLE)->first();
     $why_uses     = $cmsItems->where('section', SectionEnum::EXAMPLES)->values();
+    $installation  = $cmsItems->where('section', SectionEnum::INSTALLATION)->first();
+    $installations = $cmsItems->where('section', SectionEnum::INSTALLATIONS)->values();
+    $ourwork      = $cmsItems->where('section', SectionEnum::OURWORK)->first();
+    $ourworks     = $cmsItems->where('section', SectionEnum::OURWORKS)->values();
     $review       = $cmsItems->where('section', SectionEnum::REVIEW)->first();
     $reviews      = $cmsItems->where('section', SectionEnum::REVIEWS)->values();
     $howitwork    = $cmsItems->where('section', SectionEnum::HOWITWORK)->first();
@@ -70,6 +78,10 @@ class HomeController extends Controller
         'services'     => $services->isNotEmpty() ? $services->map(fn($s) => $clean($s))->values() : [],
         'example'      => $why_us ? $clean($why_us) : null,
         'examples'     => $why_uses->isNotEmpty() ? $why_uses->map(fn($ex) => $clean($ex))->values() : [],
+        'installation'  => $installation ? $clean($installation) : null,
+        'installations' => $installations->isNotEmpty() ? $installations->map(fn($ins) => $clean($ins))->values() : [],
+        'ourwork'      => $ourwork ? $clean($ourwork) : null,
+        'ourworks'     => $ourworks->isNotEmpty() ? $ourworks->map(fn($ow) => $clean($ow))->values() : [],
         'review'       => $review ? $clean($review) : null,
         'reviews'      => $reviews->isNotEmpty() ? $reviews->map(fn($rev) => $clean($rev))->values() : [],
         'howitwork'    => $howitwork ? $clean($howitwork) : null,

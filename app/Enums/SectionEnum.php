@@ -42,4 +42,7 @@ enum SectionEnum: string
     case INSTALLATION = 'installation';
     case INSTALLATIONS = 'installations';
 
+    case OURWORK = 'our-work';
+    case OURWORKS = 'our-works';
+
 }

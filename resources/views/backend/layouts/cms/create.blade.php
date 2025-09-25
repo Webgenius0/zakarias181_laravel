@@ -59,6 +59,12 @@ $hasBoth = $hasImage && $hasBg;
                                             </div>
                                         </div>
 
+                                        <div class="row {{ in_array('price', $components) ? '' : 'd-none' }}">
+                                            <div class="col-md-12">
+                                                <x-form.text name="price" label="Price" placeholder="Enter here price" :value="old('price') ?? ''" />
+                                            </div>
+                                        </div>
+
                                         <div class="row {{ in_array('sub_title', $components) ? '' : 'd-none' }}">
                                             <div class="col-md-12">
                                                 <x-form.text name="sub_title" label="Sub Title" placeholder="Enter here sub title" :value="old('sub_title') ?? ''" />

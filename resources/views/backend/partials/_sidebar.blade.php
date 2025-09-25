@@ -82,7 +82,7 @@
                     </a>
 
 
-                    <ul class="slide-menu">
+                    <!-- <ul class="slide-menu">
                         <li class="sub-slide">
                             <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="#"><span
                                     class="sub-side-menu__label">Home Page</span><i
@@ -104,13 +104,49 @@
                                 <li><a href="{{ route('admin.cms.blog.blog-banner.index') }}" class="sub-slide-item">Hero Banner</a></li>
                             </ul>
                         </li>
-                    </ul>
+                    </ul> -->
+                </li>
+
+                  <li class="slide">
+                    <a class="side-menu__item {{  request()->routeIs('admin.cms.home.intro.index.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.intro.index') }}">
+                        <i class="fa-solid fa-mountain-sun side-menu__icon"></i>
+                        <span class="side-menu__label">Home Hero</span>
+                    </a>
+                </li>
+
+                 <li class="slide">
+                    <a class="side-menu__item {{  request()->routeIs('admin.cms.home.example.index.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.example.index') }}">
+                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
+                        <span class="side-menu__label">Why choose us</span>
+                    </a>
                 </li>
 
                 <li class="slide">
+                    <a class="side-menu__item {{  request()->routeIs('admin.cms.home.service.index.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.service.index') }}">
+                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
+                        <span class="side-menu__label">Home Service</span>
+                    </a>
+                </li>
+               
+              
+                <li class="slide">
+                    <a class="side-menu__item {{  request()->routeIs('admin.cms.blog.blog-banner.index.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.blog.blog-banner.index') }}">
+                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
+                        <span class="side-menu__label">Blogs Banner</span>
+                    </a>
+                </li>
+
+                 <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.cms.home.how-it-work.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.how-it-work.index') }}">
                         <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
                         <span class="side-menu__label">How it works</span>
+                    </a>
+                </li>
+
+                 <li class="slide">
+                    <a class="side-menu__item {{  request()->routeIs('admin.cms.home.our-work.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.our-work.index') }}">
+                        <i class="fa-solid fa-clipboard-question side-menu__icon"></i>
+                        <span class="side-menu__label">Our work</span>
                     </a>
                 </li>
 

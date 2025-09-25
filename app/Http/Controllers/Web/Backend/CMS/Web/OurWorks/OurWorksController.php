@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web\Backend\CMS\Web\Installation;
+namespace App\Http\Controllers\Web\Backend\CMS\Web\OurWorks;
 
 use Exception;
 use App\Models\CMS;
@@ -10,14 +10,15 @@ use App\Enums\SectionEnum;
 use Illuminate\Support\Str;
 use App\Services\CmsService;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use App\Http\Requests\CmsRequest;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use Yajra\DataTables\Facades\DataTables;
 
-class InsatallationController extends Controller
+class OurWorksController extends Controller
 {
     protected $cmsService;
+
 
     public $page;
     public $component;
@@ -34,10 +35,10 @@ class InsatallationController extends Controller
         $this->page = PageEnum::HOME;
 
         $this->component = ['title', 'sub_title'];
-        $this->section = SectionEnum::INSTALLATION;
+        $this->section = SectionEnum::OURWORK;
 
-        $this->sections = SectionEnum::INSTALLATIONS;
-        $this->components = ['title','price', 'sub_title','description'];
+        $this->sections = SectionEnum::OURWORKS;
+        $this->components = ['title', 'sub_title', 'image'];
         $this->count = 10;
     }
     /**

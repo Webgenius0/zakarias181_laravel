@@ -30,7 +30,6 @@ use App\Http\Controllers\Api\Frontend\Contactus\ContactusController;
 //page
 Route::get('/page/home', [HomeController::class, 'index']);
 
-Route::get('/category', [categoryController::class, 'index']);
 Route::get('/subcategory', [SubcategoryController::class, 'index']);
 
 Route::get('/social/links', [SocialLinksController::class, 'index']);
@@ -39,19 +38,6 @@ Route::get('/faq', [FaqController::class, 'index']);
 
 Route::post('subscriber/store', [SubscriberController::class, 'store'])->name('api.subscriber.store');
 
-/*
-# Post
-*/
-Route::middleware(['auth:api'])->controller(PostController::class)->prefix('auth/post')->group(function () {
-    Route::get('/', 'index');
-    Route::post('/store', 'store');
-    Route::get('/show/{id}', 'show');
-    Route::post('/update/{id}', 'update');
-    Route::delete('/delete/{id}', 'destroy');
-});
-
-Route::get('/posts', [PostController::class, 'posts']);
-Route::get('/post/show/{post_id}', [PostController::class, 'post']);
 
 Route::middleware(['auth:api'])->controller(ImageController::class)->prefix('auth/post/image')->group(function () {
     Route::get('/', 'index');

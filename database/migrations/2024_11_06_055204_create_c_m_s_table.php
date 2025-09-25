@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->string('title')->nullable();
+            $table->float('price')->nullable();
             $table->string('sub_title')->nullable();
             $table->longText('description')->nullable();
             $table->longText('sub_description')->nullable();

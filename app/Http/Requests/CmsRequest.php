@@ -32,7 +32,8 @@ class CmsRequest extends FormRequest
             'btn_text'          => 'nullable|string|max:50',
             'btn_link'          => 'nullable|string|max:100',
             'btn_color'         => 'nullable|string|max:50',
-            'rating'            => 'nullable|integer|between:1,5'
+            'rating'            => 'nullable|integer|between:1,5',
+            'price'             => 'nullable|numeric|min:0',
         ];
     }
 }

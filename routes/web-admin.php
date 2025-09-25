@@ -37,12 +37,14 @@ use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeBannerController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Reviews\ReviewsController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeExampleController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Home\HomeServiceController;
+use App\Http\Controllers\Web\Backend\CMS\Web\OurWorks\OurWorksController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Contactus\ContactUsController;
 use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\HowItWorksController;
 use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\SafelyShopController;
 use App\Http\Controllers\Web\Backend\CMS\Web\HowitWorks\SimpleSellingController;
 use App\Http\Controllers\Web\Backend\CMS\Web\Installation\InsatallationController;
 use App\Http\Controllers\Web\Backend\CMS\Web\PrivacyTerms\PrivacAndTermsController;
+use App\Http\Controllers\Web\Backend\User\UserListController;
 
 Route::get("dashboard", [DashboardController::class, 'index'])->name('dashboard');
 
@@ -258,6 +260,21 @@ Route::prefix('cms')->name('cms.')->group(function () {
     });
 
 
+    // our works
+        Route::prefix('home/our-work')->name('home.our-work.')->controller(OurWorksController::class)->group(function () {
+           Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{id}/show', 'show')->name('show');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::patch('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+        Route::get('/{id}/status', 'status')->name('status');
+
+        Route::put('/content', 'content')->name('content');
+        Route::get('/display', 'display')->name('display');
+    });
+
     //Privacy and Terms
     Route::controller(PrivacAndTermsController::class)->prefix('privecyandterms')->name('privecyandterms.')->group(function () {
         Route::get('/terms', 'termsAndCondition')->name('terms');
@@ -378,6 +395,18 @@ Route::prefix('setting/other')->name('setting.other')->group(function () {
 //livewire
 Route::prefix('livewire/crud')->name('livewire.crud')->group(function () {
     Route::get('/', [LivewireController::class, 'index'])->name('.index');
+});
+
+
+Route::controller(UserListController::class)->prefix('user')->name('user.')->group(function () {
+    Route::get('/', 'dashboard')->name('dashboard');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::post('/update/{id}', 'update')->name('update');
+    Route::delete('/delete/{id}', 'destroy')->name('destroy');
+    Route::get('/status/{id}', 'status')->name('status');
 });
 
 
