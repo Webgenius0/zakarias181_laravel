@@ -130,7 +130,7 @@ class BlogListController extends Controller
                 'created_at' => $item->created_at->format('j M Y'),
                 'human_time' => $item->created_at->diffForHumans(),
                 'author' => $authorName, // show role as author
-                'human_time' => $item->cre
+                
             ];
         });
 
