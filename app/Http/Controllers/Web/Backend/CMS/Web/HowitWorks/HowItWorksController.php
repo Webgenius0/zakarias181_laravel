@@ -38,7 +38,7 @@ class HowItWorksController extends Controller
         $this->section = SectionEnum::HOWITWORK;
 
         $this->sections = SectionEnum::HOWITWORKS;
-        $this->components = ['title', 'sub_title', 'image'];
+        $this->components = ['title', 'sub_title', 'image','description'];
         $this->count = 10;
     }
     /**
