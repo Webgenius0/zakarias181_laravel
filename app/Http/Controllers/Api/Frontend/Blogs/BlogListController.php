@@ -44,6 +44,7 @@ class BlogListController extends Controller
                 'status'     => $blog->status,
                 'created_at' => $blog->created_at->format('j M Y'),
                 'author'     => $authorName, // show role as author
+                'human_time' => $blog->created_at->diffForHumans()
             ];
         });
 
@@ -58,6 +59,7 @@ class BlogListController extends Controller
                     'title'     => $banner->title,
                     'sub_title' => $banner->sub_title,
                     'image'     => $banner->image ? asset($banner->image) : null,
+                    'human_time' => $banner->created_at->diffForHumans(),
                     'status'    => $banner->status,
                 ] : null,
                 'blogs'  => $blogList,
@@ -102,6 +104,7 @@ class BlogListController extends Controller
             'image'      => $blog->image ? asset($blog->image) : url('default/logo.png'),
             'created_at' => $blog->created_at ? $blog->created_at->format('j F Y') : null,
             'author'     => $authorName, // show role as author
+            'human_time' => $blog->created_at->diffForHumans(),
         ];
 
         // Related blogs by title words
@@ -125,7 +128,9 @@ class BlogListController extends Controller
                 'slug'  => $item->slug,
                 'image' => $item->image ? asset($item->image) : url('default/logo.png'),
                 'created_at' => $item->created_at->format('j M Y'),
+                'human_time' => $item->created_at->diffForHumans(),
                 'author' => $authorName, // show role as author
+                'human_time' => $item->cre
             ];
         });
 
