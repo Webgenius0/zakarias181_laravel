@@ -38,7 +38,7 @@ class OurWorksController extends Controller
         $this->section = SectionEnum::OURWORK;
 
         $this->sections = SectionEnum::OURWORKS;
-        $this->components = ['title', 'sub_title', 'image'];
+        $this->components = ['title', 'sub_title', 'image','description'];
         $this->count = 10;
     }
     /**
