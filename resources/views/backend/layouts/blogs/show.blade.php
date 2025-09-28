@@ -1,4 +1,4 @@
-@extends('backend.app', ['title' => 'Show FAQ'])
+@extends('backend.app', ['title' => 'Blogs Show'])
 
 @section('content')
 
@@ -11,11 +11,11 @@
 
             <div class="page-header">
                 <div>
-                    <h1 class="page-title">FAQ</h1>
+                    <h1 class="page-title">Blogs</h1>
                 </div>
                 <div class="ms-auto pageheader-btn">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">FAQ</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Blogs</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Show</li>
                     </ol>
                 </div>
@@ -25,7 +25,7 @@
                 <div class="col-md-12">
                     <div class="card post-sales-main">
                         <div class="card-header border-bottom">
-                            <h3 class="card-title mb-0">{{ Str::limit($faq->question, 50) }}</h3>
+                            <h3 class="card-title mb-0">{{ Str::limit($blog->question, 50) }}</h3>
                             <div class="card-options">
                                 <a href="javascript:window.history.back()" class="btn btn-sm btn-primary">Back</a>
                             </div>
@@ -34,18 +34,31 @@
                             <table class="table table-bordered table-striped">
                                 
                                 <tr>
-                                    <th>Question</th>
-                                    <td>{{ $faq->question ?? 'N/A' }}</td>
+    <th>Image</th>
+    <td>
+        @if($blog->image)
+            <img src="{{ asset($blog->image) }}" alt="{{ $blog->title }}" 
+                 class="img-thumbnail" 
+                 style="max-width: 200px; height: auto;">
+        @else
+            N/A
+        @endif
+    </td>
+</tr>
+
+                                <tr>
+                                    <th>Title</th>
+                                    <td>{{ $blog->title ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Answer</th>
-                                    <td>{!! $faq->answer ?? 'N/A' !!}</td>
+                                    <th>Content</th>
+                                    <td>{!! $blog->content ?? 'N/A' !!}</td>
                                 </tr>
                                 <tr>
                                     <th>Action</th>
                                     <td>
-                                        <button class="btn btn-sm btn-danger" onclick="showDeleteConfirm(`{{ $faq->id }}`)">Delete</button>
-                                        <button class="btn btn-sm btn-primary" onclick="goToEdit(`{{ $faq->id }}`)">Edit</button>
+                                        <button class="btn btn-sm btn-danger" onclick="showDeleteConfirm(`{{ $blog->id }}`)">Delete</button>
+                                        <button class="btn btn-sm btn-primary" onclick="goToEdit(`{{ $blog->id }}`)">Edit</button>
                                     </td>
                                 </tr>
                             </table>
