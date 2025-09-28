@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="card-body border-0">
-                            <form class="form form-horizontal" method="POST" action="{{ route('admin.blogs.update', $blog->id) }}">
+                            <form class="form form-horizontal" method="POST" action="{{ route('admin.blogs.update', $blog->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-4">
 

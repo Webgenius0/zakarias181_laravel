@@ -20,7 +20,7 @@ class BlogsController extends Controller
             $data = Blog::orderBy('id', 'desc')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
-                
+
                 ->addColumn('status', function ($data) {
                     $backgroundColor = $data->status == "active" ? '#4CAF50' : '#ccc';
                     $sliderTranslateX = $data->status == "active" ? '26px' : '2px';
@@ -34,7 +34,7 @@ class BlogsController extends Controller
 
                     return $status;
                 })
-                 ->addColumn('image', function ($data) {
+                ->addColumn('image', function ($data) {
                     if ($data->image) {
                         $url = asset($data->image);
                         return '<img src="' . $url . '" alt="image" width="50px" height="50px" style="margin-left:20px;">';
@@ -80,7 +80,7 @@ class BlogsController extends Controller
         $validator = Validator::make($request->all(), [
             'title'   => 'required|string',
             'content' => 'required|string',
-            'image'   => 'required|image',         
+            'image'   => 'required|image',
         ]);
 
         if ($validator->fails()) {
@@ -132,12 +132,12 @@ class BlogsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-   public function update(Request $request, $id)
+    public function update(Request $request, $id)
 {
     $validator = Validator::make($request->all(), [
         'title'   => 'required|string',
         'content' => 'required|string',
-        'image'   => 'nullable|image',
+        'image'   => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
     ]);
 
     if ($validator->fails()) {
@@ -149,21 +149,22 @@ class BlogsController extends Controller
 
         $blog = Blog::findOrFail($id);
 
-        // Handle image update
+        // Handle image upload
         if ($request->hasFile('image')) {
+            // Delete old image
             if ($blog->image && file_exists(public_path($blog->image))) {
-                Helper::fileDelete(public_path($blog->image));
+                unlink(public_path($blog->image)); // simpler than Helper
             }
-            $imageName = time() . '_' . getFileName($request->file('image'));
-            $data['image'] = Helper::fileUpload($request->file('image'), 'blog', $imageName);
 
-            $blog->image = $data['image'];
+            $imageName = time() . '_' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('uploads/blog'), $imageName);
+
+            $blog->image = 'uploads/blog/' . $imageName;
         }
 
-        $slusg = Str::slug($data['title']);
-        // Update other fields
+        // Update title, slug, content
         $blog->title = $data['title'];
-        $blog->slug = $slusg;
+        $blog->slug = Str::slug($data['title']);
         $blog->content = $data['content'];
 
         $blog->save();
@@ -173,6 +174,7 @@ class BlogsController extends Controller
         return redirect()->back()->with('t-error', $e->getMessage());
     }
 }
+
 
     /**
      * Remove the specified resource from storage.
