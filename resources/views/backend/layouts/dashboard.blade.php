@@ -61,9 +61,11 @@
                                     <thead>
                                         <tr>
                                             <th class="bg-transparent border-bottom-0 wp-15">ID</th>
-                                            <th class="bg-transparent border-bottom-0">Title</th>
-                                            <th class="bg-transparent border-bottom-0 wp-15">Image</th>
-                                            <th class="bg-transparent border-bottom-0">Status</th>
+                                            <th class="bg-transparent border-bottom-0">Name</th>
+                                            <th class="bg-transparent border-bottom-0 wp-15">Message</th>
+                                            <th class="bg-transparent border-bottom-0">Postcode</th>
+                                            <th class="bg-transparent border-bottom-0">Email</th>
+                                            <th class="bg-transparent border-bottom-0">Action</th>
                                            
                                         </tr>
                                     </thead>
@@ -128,24 +130,37 @@
                     },
                    
                     {
-                        data: 'title',
-                        name: 'title',
+                        data: 'name',
+                        name: 'name',
                         orderable: true,
                         searchable: true
                     },
                     
                     {
-                        data: 'image',
-                        name: 'image',
+                        data: 'phone',
+                        name: 'phone',
                         orderable: true,
                         searchable: true
                     },
                     {
-                        data: 'status',
-                        name: 'status',
-                        orderable: false,
-                        searchable: false
+                        data: 'postcode',
+                        name: 'postcode',
+                        orderable: true,
+                        searchable: true
                     },
+                    {
+                        data: 'email',
+                        name: 'email',
+                        orderable: true,
+                        searchable: true
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: true,
+                        searchable: true
+                    },
+                   
                     
                 ],
             });
@@ -231,7 +246,10 @@
     }
 
     //edit
-   
+   function goToOpen(id) {
+        let url = "{{ route('admin.list.show', ':id') }}";
+        window.location.href = url.replace(':id', id);
+    }
     
 </script>
 @endpush

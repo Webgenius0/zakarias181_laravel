@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api\Frontend\Blogs;
 
+use App\Models\CMS;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\Models\CMS;
 
 class BlogListController extends Controller
 {
@@ -18,6 +19,9 @@ class BlogListController extends Controller
         $blogs = Blog::where('status', 'active')
             ->orderBy('created_at', 'desc')
             ->paginate(6);
+        $adminRole = Role::where('name', 'admin')->first();
+        $authorName = $adminRole ? $adminRole->name : 'Admin';
+
 
         if ($blogs->isEmpty()) {
             return response()->json([
@@ -30,7 +34,7 @@ class BlogListController extends Controller
         }
 
         // Transform each blog item
-        $blogList = $blogs->getCollection()->transform(function ($blog) {
+        $blogList = $blogs->getCollection()->transform(function ($blog) use ($authorName) {
             return [
                 'id'         => $blog->id,
                 'title'      => $blog->title,
@@ -39,6 +43,7 @@ class BlogListController extends Controller
                 'image'      => $blog->image ? asset($blog->image) : url('default/logo.png'),
                 'status'     => $blog->status,
                 'created_at' => $blog->created_at->format('j M Y'),
+                'author'     => $authorName, // show role as author
             ];
         });
 
@@ -75,6 +80,9 @@ class BlogListController extends Controller
     {
         $blog = Blog::where('slug', $slug)->first();
 
+          $adminRole = Role::where('name', 'admin')->first();
+        $authorName = $adminRole ? $adminRole->name : 'Admin';
+
         if (!$blog) {
             return response()->json([
                 'status'  => 'false',
@@ -93,6 +101,7 @@ class BlogListController extends Controller
             'status'     => $blog->status,
             'image'      => $blog->image ? asset($blog->image) : url('default/logo.png'),
             'created_at' => $blog->created_at ? $blog->created_at->format('j F Y') : null,
+            'author'     => $authorName, // show role as author
         ];
 
         // Related blogs by title words
@@ -107,12 +116,16 @@ class BlogListController extends Controller
             ->limit(5)
             ->get();
 
-        $relatedBlogs = $related->map(function ($item) {
+       
+        $relatedBlogs = $related->map(function ($item) use ($authorName) {
             return [
                 'id'    => $item->id,
+
                 'title' => $item->title,
                 'slug'  => $item->slug,
                 'image' => $item->image ? asset($item->image) : url('default/logo.png'),
+                'created_at' => $item->created_at->format('j M Y'),
+                'author' => $authorName, // show role as author
             ];
         });
 

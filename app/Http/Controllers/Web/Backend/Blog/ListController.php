@@ -8,21 +8,22 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 
 class ListController extends Controller
 {
     public function dashboard(Request $request)
     {
-       
+
         if ($request->ajax()) {
-            $data = Blog::where('status', 'active')->orderBy('id', 'desc')->get();
+            $data = Contact::where('status', 'active')->orderBy('id', 'desc')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('image', function ($data) {
                     $url = asset($data->image);
                     return '<img src="' . $url . '" border="0" width="40" class="img-rounded" align="center" />';
                 })
-               
+
                 ->addColumn('action', function ($data) {
                     return '<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
 
@@ -32,7 +33,7 @@ class ListController extends Controller
 
                             </div>';
                 })
-                ->rawColumns(['image'])
+                ->rawColumns(['image', 'action'])
                 ->make();
         }
         return view("backend.layouts.dashboard");
@@ -40,8 +41,8 @@ class ListController extends Controller
 
     public function show(int $id)
     {
-        $blog = Blog::where('status', 'active')->where('id', $id)->first();
-        return view('backend.layouts.show', compact('blog'));
+        $contactlist = Contact::where('status', 'active')->where('id', $id)->first();
+        return view('backend.layouts.show', compact('contactlist'));
     }
 
     public function status(int $id): JsonResponse
@@ -60,4 +61,7 @@ class ListController extends Controller
             'message' => 'Your action was successful!',
         ]);
     }
+
+
+  
 }
