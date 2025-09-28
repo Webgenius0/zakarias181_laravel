@@ -52,7 +52,7 @@
                 <div class="col-12 col-sm-12">
                     <div class="card product-sales-main">
                         <div class="card-header border-bottom">
-                            <h3 class="card-title mb-0">Blog List</h3>
+                            <h3 class="card-title mb-0">Contact List</h3>
                            
                         </div>
                         <div class="card-body">
