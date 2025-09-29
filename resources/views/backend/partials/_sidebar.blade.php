@@ -54,6 +54,14 @@
                     </a>
                 </li>
 
+                 <li class="slide">
+                    <a class="side-menu__item {{  request()->routeIs('admin.cms.blog.blog-banner.index.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.blog.blog-banner.index') }}">
+                        <i class="fa-solid fa-rectangle-ad side-menu__icon"></i>
+                        <span class="side-menu__label">Blogs Banner</span>
+
+                    </a>
+                </li>
+
                 <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.blogs.*') ? 'has-link active' : '' }}" href="{{ route('admin.blogs.index') }}">
                         <i class="fa-solid fa-newspaper side-menu__icon"></i>
@@ -131,23 +139,6 @@
                     </a>
                 </li>
 
-
-                <li class="slide">
-                    <a class="side-menu__item {{  request()->routeIs('admin.cms.blog.blog-banner.index.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.blog.blog-banner.index') }}">
-                        <i class="fa-solid fa-rectangle-ad side-menu__icon"></i>
-                        <span class="side-menu__label">Blogs Banner</span>
-
-                    </a>
-                </li>
-
-                <li class="slide">
-                    <a class="side-menu__item {{  request()->routeIs('admin.cms.home.how-it-work.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.how-it-work.index') }}">
-                        <i class="fa-solid fa-diagram-project side-menu__icon"></i>
-                        <span class="side-menu__label">How it works</span>
-
-                    </a>
-                </li>
-
                 <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.cms.home.installation.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.installation.index') }}">
                         <i class="fa-solid fa-screwdriver-wrench side-menu__icon"></i>
@@ -156,7 +147,7 @@
                     </a>
                 </li>
 
-                <li class="slide">
+                 <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.cms.home.our-work.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.our-work.index') }}">
                         <i class="fa-solid fa-briefcase side-menu__icon"></i>
                         <span class="side-menu__label">Our Work</span>
@@ -164,13 +155,21 @@
                     </a>
                 </li>
 
-                <li class="slide">
+                 <li class="slide">
                     <a class="side-menu__item {{  request()->routeIs('admin.cms.home.review.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.review.index') }}">
                         <i class="fa-solid fa-star side-menu__icon"></i>
                         <span class="side-menu__label">Reviews</span>
 
                     </a>
                 </li>
+
+                  <li class="slide">
+                    <a class="side-menu__item {{  request()->routeIs('admin.cms.home.how-it-work.*') ? 'has-link active' : '' }}" href="{{ route('admin.cms.home.how-it-work.index') }}">
+                        <i class="fa-solid fa-diagram-project side-menu__icon"></i>
+                        <span class="side-menu__label">How it works</span>
+
+                    </a>
+                </li>  
 
 
                 <li class="slide">
