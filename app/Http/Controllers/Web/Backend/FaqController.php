@@ -125,7 +125,7 @@ class FaqController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'category'           => 'required|string',
+           
             'question'           => 'required|string',
             'answer'             => 'required|string'
         ]);
